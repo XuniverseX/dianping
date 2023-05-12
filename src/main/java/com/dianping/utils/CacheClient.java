@@ -52,9 +52,9 @@ public class CacheClient {
         }
         // 4.不存在，根据id查询数据库
         R r = dbFallback.apply(id);
-        // 5.不存在，返回错误
+        // 5.不存在，缓存空对象，返回错误
         if (r == null) {
-            stringRedisTemplate.opsForValue().set(key, "", 2L, TimeUnit.MINUTES);
+            stringRedisTemplate.opsForValue().set(key, "", CACHE_NULL_TTL, TimeUnit.MINUTES);
             return null;
         }
         // 6.存在，写入redis
