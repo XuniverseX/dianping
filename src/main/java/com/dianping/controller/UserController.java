@@ -52,7 +52,7 @@ public class UserController {
     @PostMapping("/logout")
     public Result logout(){
         UserHolder.removeUser();
-        return Result.fail("功能未完成");
+        return Result.ok("登出成功");
     }
 
     @GetMapping("/me")
