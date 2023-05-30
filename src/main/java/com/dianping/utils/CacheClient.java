@@ -93,12 +93,10 @@ public class CacheClient {
             // 6.3.成功，开启独立线程，实现缓存重建
             CACHE_REBUILD_EXECUTOR.submit(() -> {
                 try {
-                    CACHE_REBUILD_EXECUTOR.submit(() -> {
-                        // 查询数据库
-                        R newR = dbFallback.apply(id);
-                        // 写入redis
-                        this.setWithLogicalExpire(key, newR, time, unit);
-                    });
+                    // 查询数据库
+                    R newR = dbFallback.apply(id);
+                    // 写入redis
+                    this.setWithLogicalExpire(key, newR, time, unit);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 } finally {

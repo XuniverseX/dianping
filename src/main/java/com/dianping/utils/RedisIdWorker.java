@@ -17,7 +17,7 @@ public class RedisIdWorker {
     /**
      * 序列号的位数
      */
-    private final int countBits = 32;
+    private static final int COUNT_BITS = 32;
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
@@ -33,7 +33,7 @@ public class RedisIdWorker {
         // 2.2.自增长
         long count = stringRedisTemplate.opsForValue().increment("icr:" + keyPrefix + ":" + date);
         // 3.拼接并返回
-        return timeStamp << 32 | count;
+        return timeStamp << COUNT_BITS | count;
     }
 
 }
