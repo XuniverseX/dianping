@@ -160,7 +160,10 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
         long minTime = 0;
         int os = 1;
         for (ZSetOperations.TypedTuple<String> tuple : typedTuples) {
-            ids.add(Long.valueOf(tuple.getValue()));
+            //blogId
+            String idStr = tuple.getValue();
+            ids.add(Long.valueOf(idStr));
+            //时间戳
             long time = tuple.getScore().longValue();
             if (time == minTime) {
                 os++;
