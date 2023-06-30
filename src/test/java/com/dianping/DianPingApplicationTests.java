@@ -84,4 +84,19 @@ class DianPingApplicationTests {
         }
         System.out.println(stringRedisTemplate.opsForHyperLogLog().size("hl1"));
     }
+
+    @Test
+    void testSendCode() {
+        // todo
+//        for (int i = 0; i < 2000; i++) {
+//            if (RegexUtils.isPhoneInvalid(RandomUtil.randomNumbers(11))) {
+//
+//            }
+//        }
+    }
+
+    @Test
+    void testLogin() {
+
+    }
 }
